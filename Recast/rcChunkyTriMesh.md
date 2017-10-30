@@ -49,7 +49,7 @@ struct rcChunkyTriMesh
     int ntris;                      // 三角形数量
     int maxTrisPerChunk;
 };
-    ```
+```
 
 
 ```cpp
@@ -81,10 +81,10 @@ static void subdivide(BoundsItem* items, int nitems, int imin, int imax, int tri
 
 ### [](header-3) 为什么是nchunks*4呢
 
-以_ntris_=10133，_trisPerChunks_=256为例；
+以ntris=10133，trisPerChunks=256为例；
 
 _8192(256 * 32) < 10133 < 16384(256 * 64)_
 
 因此，叶子节点最少需要64个，由于subdivide必然构造出完全二叉树，所以总的节点数需要128个
 
-而 _10133 / 256 * 2 > 16384 / 256_，_10133 / 256 < 16384 / 256_，故此需要预留_10133 / 256 * 4 = 160_个节点，即_nchunks*4_个节点
+而 10133 / 256 * 2 > 16384 / 256，10133 / 256 < 16384 / 256，故此需要预留10133 / 256 * 4 = 160个节点，即_nchunks*4个节点
