@@ -84,7 +84,7 @@ static void subdivide(BoundsItem* items, int nitems, int imin, int imax, int tri
 
 > subdivide将三角形逐步二分地进行重排，并构建一个汇总XZ平面上包围盒信息的二叉树
 
-![subdivide]({{ "assets/img/rcChunkyTriMesh_01.png" | absolute_url }})
+![subdivide]({{ "/assets/img/rcChunkyTriMesh_01.png" | absolute_url }})
 
 
 ### [](header-3) 为什么是nchunks*4呢
