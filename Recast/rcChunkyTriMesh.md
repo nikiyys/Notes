@@ -82,13 +82,17 @@ static void subdivide(BoundsItem* items, int nitems, int imin, int imax, int tri
                       int& curTri, int* outTris, const int* inTris)
 ```
 
+> subdivide将三角形逐步二分地进行重排，并构建一个汇总XZ平面上包围盒信息的二叉树
+
+1. 
+
 
 ### [](header-3) 为什么是nchunks*4呢
 
-> 以ntris=10133，trisPerChunks=256为例；
-
+> 以ntris=10133，trisPerChunks=256为例:
+>
 > _8192(256 * 32) < 10133 < 16384(256 * 64)_
-
+>
 > 因此，叶子节点最少需要64个，由于subdivide必然构造出完全二叉树，所以总的节点数需要128个
-
-> 而 10133 / 256 * 2 > 16384 / 256，10133 / 256 < 16384 / 256，故此需要预留10133 / 256 * 4 = 160个节点，即_nchunks*4个节点
+>
+> 而 10133 / 256 * 2 > 16384 / 256，10133 / 256 < 16384 / 256，故此需要预留10133 / 256 * 4 = 160个节点，即nchunks*4个节点
