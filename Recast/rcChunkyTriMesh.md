@@ -4,7 +4,8 @@ layout: default
 
 ## [](header-2) 网格数据解析
 
-_Obj格式_网格数据的解析类
+> Obj格式网格数据的解析类
+
 ```cpp
 // rcMeshLoaderObj
 
@@ -24,7 +25,7 @@ private:
 };
 ```
 
-读入数据后，构建每一个三角形数据相应的包围信息
+> 读入数据后，构建每一个三角形数据相应的包围信息
 
 ```cpp
 struct BoundsItem
@@ -35,7 +36,7 @@ struct BoundsItem
 };
 ```
 
-代码中trisPerChunk为256，nchunks为所需chunk的数量，nodes则为长度为nchunks*4的rcChunkyTriMeshNode数组
+> 代码中trisPerChunk为256，nchunks为所需chunk的数量，nodes则为长度为nchunks*4的rcChunkyTriMeshNode数组
 
 ```cpp
 struct rcChunkyTriMesh
@@ -63,28 +64,31 @@ struct rcChunkyTriMeshNode
 ```
 
 ```cpp
+// @remark              递归地划分和重排三角形
+
 // @param items         BoundItem数组
 // @param nitems        数组的长度
 // @param imin          待处理的最小三角形序号（包含）
 // @param imax          待处理的最大三角形序号（不包含）
 // @param trisPerChunk
-// @param curNode
-// @param nodes
-// @param maxNodes
-// @param curTri
-// @param outTris
-// @param inTris
+// @param curNode       当前位于nodes数组的序号
+// @param nodes         rcChunkyTriMeshNode数组，即三角形包围盒树
+// @param maxNodes      nodes数组的最大长度
+// @param curTri        当前位于输出三角形数组的序号
+// @param outTris       输出的三角形数组
+// @param inTris        输入的三角形数组
 static void subdivide(BoundsItem* items, int nitems, int imin, int imax, int trisPerChunk,
                       int& curNode, rcChunkyTriMeshNode* nodes, const int maxNodes,
                       int& curTri, int* outTris, const int* inTris)
 ```
 
+
 ### [](header-3) 为什么是nchunks*4呢
 
-以ntris=10133，trisPerChunks=256为例；
+> 以ntris=10133，trisPerChunks=256为例；
 
-_8192(256 * 32) < 10133 < 16384(256 * 64)_
+> _8192(256 * 32) < 10133 < 16384(256 * 64)_
 
-因此，叶子节点最少需要64个，由于subdivide必然构造出完全二叉树，所以总的节点数需要128个
+> 因此，叶子节点最少需要64个，由于subdivide必然构造出完全二叉树，所以总的节点数需要128个
 
-而 10133 / 256 * 2 > 16384 / 256，10133 / 256 < 16384 / 256，故此需要预留10133 / 256 * 4 = 160个节点，即_nchunks*4个节点
+> 而 10133 / 256 * 2 > 16384 / 256，10133 / 256 < 16384 / 256，故此需要预留10133 / 256 * 4 = 160个节点，即_nchunks*4个节点
