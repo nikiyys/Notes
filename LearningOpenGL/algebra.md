@@ -21,3 +21,12 @@ layout: default
 ![subdivide]({{ "/assets/img/algebra_03.png" | absolute_url }})
 
 > -P是因为需要用a-P作为变换坐标系的输入向量
+
+> *需要注意的是，OpenGL是右手坐标系，摄像机观察物体是从原点往-Z轴方向观察的*
+
+![subdivide]({{ "/assets/img/algebra_04.png" | absolute_url }})
+
+### [](header-3) 投影矩阵
+
+> 详细的推导过程还是参考![这个网站](http://www.songho.ca/opengl/gl_projectionmatrix.html)比较好
+
