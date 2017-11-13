@@ -28,5 +28,7 @@ layout: default
 
 ### [](header-3) 投影矩阵
 
-> 详细的推导过程还是参考[这个网站](http://www.songho.ca/opengl/gl_projectionmatrix.html)比较好
+> 详细的推导过程参考[这个网站](http://www.songho.ca/opengl/gl_projectionmatrix.html)
+
+> FovY和Aspect相关的看[这个网站](https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/opengl-perspective-projection-matrix)
 
